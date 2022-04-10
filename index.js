@@ -1,7 +1,7 @@
 const CronJob=require('cron').CronJob;
 const SELF_ID=NIL._vanilla.cfg.self_id;
 const MAIN_GROUP_ID=NIL._vanilla.cfg.group.main;
-const CFG_PATH='./modules/CronJob/data.json';
+const CFG_PATH='./Data/CronJob/data.json';
 const TIME_ZONE='Asia/Hong_Kong';
 const ENCODE="utf8";
 const LOGGER = new NIL.Logger("CronJob");
@@ -22,7 +22,24 @@ const CONFIG= {
            "enable":false,
            "type":1//-1 关服,1 开服
         },
-    }
+    },
+    "test1":{
+    "enable":false,//是否启用该定时任务
+    "severName":"测试",//对应服务器名字
+    "cronEx":"0 * * * * *",//cron表达式
+    "chatJob":{
+        "enable":true,
+        "chatMsg":"测试",//发送的聊天信息
+    },
+    "cmdJob":{//对服务器发送指令
+        "enable":false,
+        "cmd":""
+    },
+    "serverJob":{//服务器开关操作
+        "enable":false,
+        "type":1//-1 关服,1 开服
+    },
+   }
 }
 
 let cronJobList=[];
