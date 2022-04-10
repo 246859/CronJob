@@ -1,7 +1,7 @@
 const CronJob=require('cron').CronJob;
 const SELF_ID=NIL._vanilla.cfg.self_id;
 const MAIN_GROUP_ID=NIL._vanilla.cfg.group.main;
-const CFG_PATH='./modules/CronJob/config.json';
+const CFG_PATH='./modules/CronJob/data.json';
 const TIME_ZONE='Asia/Hong_Kong';
 const ENCODE="utf8";
 const LOGGER = new NIL.Logger("CronJob");
