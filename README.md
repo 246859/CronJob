@@ -25,27 +25,40 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 
 在此之前你需要基本掌握json和cron
 
+### 属性释义
+
+| 对象属性               | 释义             | 参数    | 示例               |
+| ---------------------- | ---------------- | ------- | ------------------ |
+| type(组合任务对象中)   | 组合任务对象类型 | String  | "GROUP"/"JOB"      |
+| description            | 功能描述         | String  | "这是一段功能描述" |
+| enable                 | 是否启用某功能   | Boolean | true/false         |
+| cronEx                 | cron表达式       | String  | "* * * * * *"      |
+| serverName             | 服务器名称       | String  | "生存服务器"       |
+| chatMsg                | 聊天信息         | String  | "这是一段聊天信息" |
+| cmd                    | BDS指令          | String  | "list"             |
+| type(服务器任务对象中) | 表示开关服操作   | int     | -1是关服 1是开服   |
+
 ### 组合任务对象
 
 #### 任务组对象
 
 ```json
-"定时消息": {//任务组名
-    "enable": true,//是否启用
-    "type": "GROUP",//类型
-    "description": "让玩家爬去学习",//功能描述
-    "jobs": {}//涵盖的任务
+"定时消息": {
+    "enable": true,
+    "type": "GROUP",
+    "description": "让玩家爬去学习",
+    "jobs": {}
 }
 ```
 
 ####  任务对象
 
 ```json
-"发消息": {//任务名
-	"enable": true,//是否启用
-	"type":"JOB",//类型
-	"severName": "服务器名称",//服务器名称
-	"cronEx": "*/20 * * * * *",//cron表达式 决定了执行的时间
+"发消息": {
+	"enable": true,
+	"type":"JOB",
+	"severName": "服务器名称",
+	"cronEx": "*/20 * * * * *",
 }
 ```
 
@@ -58,7 +71,7 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 ```json
 "chatJob":{
 	"enable":true,
-	"chatMsg":"好好学习，天天向上"//要发送的消息
+	"chatMsg":"好好学习，天天向上"
 }
 ```
 
@@ -67,7 +80,7 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 ```json
 "cmdJob":{
 	"enable":true,
-	"cmd":"title @a title 好好学习，天天向上"//执行的指令 不需要加/前缀
+	"cmd":"title @a title 好好学习，天天向上"
 }
 ```
 
@@ -76,7 +89,7 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 ```json
 "serverJob":{
 	"enable":true,
-	"type":-1 //1 代表开服 -1 代表关服
+	"type":-1 
 }
 ```
 
@@ -99,29 +112,29 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 接下来我们创建一个基本的任务组
 
 ```json
-"定时消息": {//任务组名
-    "enable": true,//是否启用
-    "type": "GROUP",//类型
-    "description": "定时通知玩家注意休息",//功能描述
-    "jobs": {}//涵盖的任务
+"定时消息": {
+    "enable": true,
+    "type": "GROUP",
+    "description": "定时通知玩家注意休息",
+    "jobs": {}
 }
 ```
 
 接下来可以创建任务对象了,
 
 ```json
-"发消息": {//任务名
-	"enable": false,//是否启用
-	"type":"JOB",//类型
-	"severName": "生存服务器",//服务器名称
-	"cronEx": "*/20 * * * * *",//cron表达式 决定了执行的时间
+"发消息": {
+	"enable": false,
+	"type":"JOB",
+	"severName": "生存服务器",
+	"cronEx": "*/20 * * * * *",
 }
 ```
 
 接下来创建一个聊天任务对象
 
 ```json
-"chatJob": {//表示发送聊天消息
+"chatJob": {
     "enable": true,
     "chatMsg": "游玩时间不要太长哦~,注意休息"
 }
@@ -130,12 +143,12 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 将聊天任务对象放至任务对象中
 
 ```json
-"发消息": {//任务名
-	"enable": false,//是否启用
-	"type":"JOB",//类型
-	"severName": "生存服务器",//服务器名称
-	"cronEx": "*/20 * * * * *",//cron表达式 决定了执行的时间
-	"chatJob": {//表示发送聊天消息
+"发消息": {
+	"enable": false,
+	"type":"JOB",
+	"severName": "生存服务器",
+	"cronEx": "*/20 * * * * *",
+	"chatJob": {
         "enable": true,
         "chatMsg": "游玩时间不要太长哦~,注意休息"
     }
@@ -145,17 +158,17 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 将任务对象放至jobs中
 
 ```json
-"定时消息": {//任务组名
-    "enable": true,//是否启用
-    "type": "GROUP",//类型
-    "description": "定时通知玩家注意休息",//功能描述
-    "jobs": {//涵盖的任务
-        "发消息": {//任务名
-        "enable": false,//是否启用
-        "type":"JOB",//类型
-        "severName": "生存服务器",//服务器名称
-        "cronEx": "*/20 * * * * *",//cron表达式 决定了执行的时间
-        "chatJob": {//表示发送聊天消息
+"定时消息": 
+    "enable": true,
+    "type": "GROUP",
+    "description": "定时通知玩家注意休息",
+    "jobs": {
+        "发消息": {
+        "enable": false
+        "type":"JOB",
+        "severName": "生存服务器"
+        "cronEx": "*/20 * * * * *",
+        "chatJob": {
             "enable": true,
             "chatMsg": "游玩时间不要太长哦~,注意休息"
         }
@@ -179,16 +192,16 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 例如 在一个任务对象中同时存在聊天任务对象和服务器任务对象，表示于凌晨一点关闭服务器
 
 ```json
-"关服发消息": {//任务名
-	"enable": true,//是否启用
-	"type":"JOB",//类型
-	"severName": "生存服务器",//服务器名称
-	"cronEx": "0 0 1 * * *",//cron表达式 决定了执行的时间
-	"chatJob": {//表示发送聊天消息
+"关服发消息": {
+	"enable": true,
+	"type":"JOB",
+	"severName": "生存服务器",
+	"cronEx": "0 0 1 * * *",
+	"chatJob": {
         "enable": true,
         "chatMsg": "服务器正在关闭,下次将于3分钟后开启"
     },
-    "serverJob":{//发送服务器开关操作
+    "serverJob":{
         "enable":true,
         "type":-1
     }
@@ -198,16 +211,16 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 表示于凌晨1点零三分开启服务器
 
 ```json
-"开服发消息": {//任务名
-	"enable": true,//是否启用
-	"type":"JOB",//类型
-	"severName": "生存服务器",//服务器名称
-	"cronEx": "0 3 1 * * *",//cron表达式 决定了执行的时间
-	"chatJob": {//表示发送聊天消息
+"开服发消息": {
+	"enable": true,
+	"type":"JOB",
+	"severName": "生存服务器",
+	"cronEx": "0 3 1 * * *",
+	"chatJob": {
         "enable": true,
         "chatMsg": "服务器正在开启,下次将于次日凌晨1点关闭"
     },
-    "serverJob":{//发送服务器开关操作
+    "serverJob":{
         "enable":true,
         "type":1
     }
@@ -221,35 +234,35 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 将以上两个任务对象放入jobs中
 
 ```json
-"定时重启": {//任务组名
-    "enable": true,//是否启用
-    "type": "GROUP",//类型
-    "description": "定时通知玩家注意休息",//功能描述
-    "jobs": {//涵盖的任务
-        "关服发消息": {//任务名
-            "enable": true,//是否启用
-            "type":"JOB",//类型
-            "severName": "生存服务器",//服务器名称
-            "cronEx": "0 0 1 * * *",//cron表达式 决定了执行的时间
-            "chatJob": {//表示发送聊天消息
+"定时重启": {
+    "enable": true,
+    "type": "GROUP",
+    "description": "定时通知玩家注意休息",
+    "jobs": {
+        "关服发消息": {
+            "enable": true,
+            "type":"JOB",
+            "severName": "生存服务器",
+            "cronEx": "0 0 1 * * *",
+            "chatJob": {
                 "enable": true,
                 "chatMsg": "服务器正在关闭,下次将于3分钟后开启"
             },
-            "serverJob":{//发送服务器开关操作
+            "serverJob":{
                 "enable":true,
                 "type":-1
             }
         },
-        "开服发消息": {//任务名
-            "enable": true,//是否启用
-            "type":"JOB",//类型
-            "severName": "生存服务器",//服务器名称
-            "cronEx": "0 3 1 * * *",//cron表达式 决定了执行的时间
-            "chatJob": {//表示发送聊天消息
+        "开服发消息": {
+            "enable": true,
+            "type":"JOB",
+            "severName": "生存服务器",
+            "cronEx": "0 3 1 * * *",
+            "chatJob": {
                 "enable": true,
                 "chatMsg": "服务器正在开启,下次将于次日凌晨1点关闭"
             },
-            "serverJob":{//发送服务器开关操作
+            "serverJob":{
                 "enable":true,
                 "type":1
             }
