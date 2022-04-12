@@ -43,7 +43,7 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 #### 任务组对象
 
 ```json
-"定时消息": {
+"定时消息":{
     "enable": true,
     "type": "GROUP",
     "description": "让玩家爬去学习",
@@ -158,7 +158,7 @@ downloadZip，得到的文件夹放入机器人的modules目录即可
 将任务对象放至jobs中
 
 ```json
-"定时消息": 
+"定时消息": {
     "enable": true,
     "type": "GROUP",
     "description": "定时通知玩家注意休息",
