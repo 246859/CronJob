@@ -111,7 +111,7 @@ function main(){//启动函数
 function pluginsLoadingLog(){
     LOGGER.info("插件加载完毕");
     LOGGER.info("author:Stranger");
-    LOGGER.info("Version:1.0.2");
+    LOGGER.info("Version:1.0.3");
 }
 
 /**
@@ -233,23 +233,23 @@ function startAllJobs(){//将所有添加至任务列表中的任务开启
  */
 
 function isConflictJobs(chatJob,cmdJob,serverJob){//判断任务之间是否相互冲突
-    return cmdJob.enable && serverJob.enable;//命令任务与服务器任务不能同时执行
+    return (cmdJob && serverJob ) && (cmdJob.enable && serverJob.enable);//命令任务与服务器任务不能同时执行
 }
 
 function executeChatJob(chatJob){//执行聊天任务
-    if (!chatJob.enable)return;
+    if (!chatJob || !chatJob.enable)return;
     LOGGER.info(`正在向主群 发送消息 ${chatJob.chatMsg}`);
     sendMsgToMainGroup(chatJob.chatMsg);
 }
 
 function executeCmdJob(serverName,cmdJob){//执行命令任务
-    if (!cmdJob.enable)return;
+    if (!cmdJob || !cmdJob.enable)return;
     LOGGER.info(`正在向服务器 ${serverName} 发送命令 ${cmdJob.cmd}`);
     sendCmdToServer(serverName,cmdJob.cmd);
 }
 
 function executeServerJob(serverName,serverJob){//执行服务器任务
-    if (!serverJob.enable)return;
+    if (!serverJob || !serverJob.enable)return;
     LOGGER.info(`正在向服务器 ${serverName} 发送操作 ${serverJob.type>0?'开启': '关闭' }`);
     sendOperationToServer(serverName,serverJob.type);
 }

@@ -1,6 +1,6 @@
 {
     "name":"crojob",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "execute some timely job",
     "author": "stranger",
     "license": "GNU Affero General Public License v3.0",
