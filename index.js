@@ -273,6 +273,6 @@ function sendOperationToServer(serverName,type){//向服务器发送开关服操
 
 main();
 module.exports = {
-    onStart(api){api.listen('onRotboOnline',startAllJobs)},//机器人登陆成功后才会开启任务
+    onStart(api){api.listen('onRobotOnline',startAllJobs)},//机器人登陆成功后才会开启任务
     onStop(){}
 }
